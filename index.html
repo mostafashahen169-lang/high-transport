@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#e60000">
+<title>دعم المحتوى | النقل العالي</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;display:grid;place-items:center;padding:20px;
+font-family:Tahoma,Arial,sans-serif;color:#202124;background:linear-gradient(145deg,#fff2f2,#f3f5fa)}
+.card{width:min(100%,470px);background:#fff;border-radius:25px;padding:30px 24px;
+text-align:center;box-shadow:0 18px 55px #1b24351a;border:1px solid #f0eeee}
+.logo{width:76px;height:76px;margin:0 auto 17px;border-radius:22px;background:#e60000;
+color:white;display:grid;place-items:center;font-size:25px;font-weight:800}
+h1{font-size:27px;margin:0 0 10px;line-height:1.45}
+p{color:#666;line-height:1.9}
+button,.copy{display:block;width:100%;border:0;border-radius:14px;padding:15px 18px;
+font-size:17px;font-weight:700;cursor:pointer;background:#e60000;color:white;margin-top:18px}
+button:hover,.copy:hover{background:#c90000}
+.secondary{background:#242424}
+.secondary:hover{background:#111}
+.hidden{display:none}
+.numberbox{margin:20px 0;padding:20px 12px;background:#fff6f6;border:1px solid #ffdada;border-radius:17px}
+.number{font-size:28px;font-weight:800;direction:ltr;unicode-bidi:isolate}
+.label{font-size:14px;color:#777;margin-bottom:10px}
+.steps{text-align:right;background:#f7f8fa;border-radius:15px;padding:15px 18px;margin-top:18px}
+.steps li{margin:9px 0;line-height:1.8}
+.note{font-size:12px;color:#888;margin-top:18px}
+#status{min-height:22px;color:#16803c;font-size:14px;margin-top:10px}
+.footer{font-size:12px;color:#9ca3af;margin-top:24px}
+</style>
+</head>
+<body>
+<main class="card">
+  <section id="welcome">
+    <div class="logo">دعم</div>
+    <h1>أهلاً بيك في صفحة دعم<br>النقل العالي ❤️</h1>
+    <p>دعمك بيفرق معانا وبيساعدنا نكمل ونقدم محتوى أحسن.<br>شكرًا لوجودك ومساندتك لينا.</p>
+    <button id="go">اضغط هنا للدعم</button>
+  </section>
+
+  <section id="support" class="hidden">
+    <div class="logo">♥</div>
+    <h1>شكرًا على دعمك ❤️</h1>
+    <p>لإرسال دعمك عن طريق فودافون كاش، استخدم الرقم التالي كمستلم للتحويل:</p>
+    <div class="numberbox">
+      <div class="label">رقم فودافون كاش</div>
+      <div class="number" id="phone">01093299658</div>
+      <button class="copy" id="copy" type="button">انسخ رقم التحويل</button>
+      <div id="status" role="status"></div>
+    </div>
+    <div class="steps">
+      <strong>طريقة إرسال الدعم</strong>
+      <ol>
+        <li>افتح تطبيق فودافون كاش أو خدمة المحفظة على موبايلك.</li>
+        <li>اختر تحويل الأموال.</li>
+        <li>اكتب رقم المستلم الموضح بالأعلى، ثم أدخل المبلغ.</li>
+        <li>راجع الرقم والمبلغ جيدًا، وأكّد التحويل من خلال محفظتك.</li>
+      </ol>
+    </div>
+    <p class="note">الصفحة لا تستقبل الأموال ولا تطلب رقمك السري أو رمز التحقق. لا تشارك كلمة مرور المحفظة أو OTP مع أي شخص.</p>
+    <button class="secondary" id="back" type="button">العودة للصفحة الرئيسية</button>
+  </section>
+  <div class="footer">النقل العالي | High Transport</div>
+</main>
+<script>
+const welcome=document.getElementById('welcome');
+const support=document.getElementById('support');
+document.getElementById('go').addEventListener('click',()=>{
+  welcome.classList.add('hidden'); support.classList.remove('hidden'); window.scrollTo(0,0);
+});
+document.getElementById('back').addEventListener('click',()=>{
+  support.classList.add('hidden'); welcome.classList.remove('hidden'); window.scrollTo(0,0);
+});
+document.getElementById('copy').addEventListener('click',async()=>{
+  const status=document.getElementById('status');
+  try{
+    await navigator.clipboard.writeText(document.getElementById('phone').textContent.trim());
+    status.textContent='تم نسخ رقم التحويل ❤️';
+  }catch(e){
+    status.textContent='انسخ الرقم يدويًا: 01093299658';
+  }
+});
+</script>
+</body>
+</html>
